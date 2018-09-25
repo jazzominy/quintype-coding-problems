@@ -1,4 +1,5 @@
-let board = null, n = 64;
+let board = null, checks = [], n = 64, diamondsRevealedCnt = 0,
+    message = 'Yahoo!! You found all the diamonds. Your score is ';
 
 global.startApp = function(container) {
   board = container;
@@ -18,6 +19,7 @@ function renderChecks() {
   for(let i = 0; i < n; i++) {
     let check = createCheck();
     board.appendChild(check);
+    checks.push(check);
   }
 }
 
@@ -64,17 +66,50 @@ function getDiamondIndices() {
   return indices;
 }
 
+/**
+ * On check click, display the diamond if present
+ * @param {*} e event object
+ */
 function checkForDiamond(e) {
   if(!e || e.target.tagName !== 'LI') {
     return;
   }
 
   let check = e.target;
+
+  //For already open check, do nothing
+  if(check.classList.length == 0) {
+    return;
+  }
   //Need to check the browser compatibility for classlist methods
   check.classList.remove('unknown');
 
   let hasDiamond = 'hasDiamond' in check.dataset;
   if(hasDiamond) {
     check.classList.add('diamond');
+    diamondsRevealedCnt++;
+  }
+
+  //Maintain a count of unknown checks
+  if(checks && checks.length) {
+    checks.splice(checks.indexOf(check),1);
+  }
+
+  checkGameOver();
+}
+
+/**
+ * Function to check if game is over or not. It displays the message accordingly
+ */
+function checkGameOver() {
+  if(diamondsRevealedCnt == 8) {
+
+    board.removeEventListener('click',checkForDiamond);
+
+    let msgEl = document.querySelector('.message');
+    if(msgEl) {
+      msgEl.textContent = message + checks.length;
+      msgEl.style.display = 'inline-block';
+    }
   }
 }
