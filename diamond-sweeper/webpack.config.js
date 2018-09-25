@@ -16,11 +16,12 @@ const BABEL_PRESET = {
 
 module.exports = {
     entry: {
-      app: "./app/client/app.js"
+      app: "./app/client/app.js",
+      style: "./app/stylesheets/style.scss"
     },
     output: {
         path: OUTPUT_DIRECTORY,
-        filename: `bundle.js`,
+        filename: `[name].js`,
         publicPath: PUBLIC_PATH,
     },
     module: {
