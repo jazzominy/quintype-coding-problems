@@ -1,11 +1,13 @@
-import '../stylesheets/style.scss';
-
 let board = null, n = 64;
+
 global.startApp = function(container) {
   board = container;
+
   renderChecks();
   assignDiamonds();
 
+  //Take advantage of event bubbling to listen for click event on parent
+  //instead of attaching listener per child
   board.addEventListener('click',checkForDiamond);
 }
 
@@ -28,10 +30,13 @@ function createCheck() {
   return el;
 }
 
+/**
+ * Add diamonds to the checks
+ */
 function assignDiamonds() {
-  let indexes = [1,5,60,45,34,53,22,19];
+  let indices = getDiamondIndices();
 
-  indexes.forEach((i) => {
+  indices.forEach((i) => {
     let check = board.children.item(i);
     if(check) {
       check.setAttribute('data-has-diamond',true);
@@ -39,10 +44,24 @@ function assignDiamonds() {
   })
 }
 
-function getDiamondIndex() {
-  let min = 0, max = n;
-  let index = parseInt(Math.random() * n);
-  return index;
+/**
+ * Randomize diamond indices
+ */
+function getDiamondIndices() {
+  let max = n, indices = [];
+
+  while(indices.length != 8) {
+    let index = parseInt(Math.random() * max);
+
+    //If generated index already added then continue
+    if(indices.indexOf(index) != -1) {
+      continue;
+    }
+    
+    indices.push(index);
+  }
+  
+  return indices;
 }
 
 function checkForDiamond(e) {
