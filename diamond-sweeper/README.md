@@ -1,10 +1,18 @@
 # Diamond Sweeper
 
-## Problem Statement
+### Setup instructions
+To start the Application:
 
-The goal of this exercise is to build a game.
+* Install the dependencies (via `npm install`)
+* Start the app by running `npm run serve`
+* Visit `http://localhost:8080` to see the application
 
-The rules of the game are as follows:
+### Changes made to starter app
+
+* `webpack-dev-server@2.7.1` is used as development server so that we dont need to compile the code and reload the app every time a change is made
+* `jsdom@9.9.1` is used to execute tests without a browser
+
+### Completed actions
 
 * The game board has 8x8 squares (initially, all represented by question marks)
 * There are 8 diamonds hidden on the board, each diamond behind one of the squares
@@ -13,43 +21,9 @@ The rules of the game are as follows:
     * Otherwise, the square is opened, and blank
 * The game ends when all diamonds are found. The user's score is the number of squares still left unturned.
 
-## Advanced: Adding Hints
-
-Part II of this problem adds the ability to add hints to empty squares
-
-* When the user clicks on a square
-    * If the square was not a diamond, then an arrow appears, pointing towards the nearest diamond
-    * Any arrows that were previously show become hidden
-
-## Starter App
-
-Provided is a simple application which can be used as a starter kit. It contains a simple UI for the above problem. Feel free to add any libraries or frameworks that you believe can help. Unit tests for any logic that the application contains is a bonus.
-
-Requirements:
-
-* node.js (the app was built against v8.1.4, but any node > 6 should work)
-* npm
-
-To start the Application:
-
-* Install the dependencies (via `yarn install` or `npm install`)
-* Compile Assets: `npm run compile`
-* Start the webserver: `npm start`
-* Visit `http://localhost:3000` to see the application
-
-If you have done the above steps correctly, you should see the below
-
-![Screenshot](./screenshot.jpg)
-
-If you make a change, run the last two steps above to see it reflected.
-
-## Bonus Sections
-
-You may also choose to try some of the bonus parts of this problem:
+## Bonus Sections Implemented
 
 1. (UI) - Improve the board to semantic html. The default HTML provided uses tables.
-2. (UI) - Make the UI responsive.
-3. (Javascript) - Support the ability to save your progress, and load your last save.
-4. (Javascript) - Cover logic in your application with meaningful tests
+4. (Javascript) - Cover logic in your application with meaningful tests (implemented partly)
 5. (Infra) - Get hot reloading working
-6. (Infra) - Get asset pipelining and minification working
+6. (Infra) - Get asset pipelining and minification working (minification of js implemented)
