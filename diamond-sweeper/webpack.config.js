@@ -16,18 +16,16 @@ const BABEL_PRESET = {
 
 module.exports = {
     entry: {
-      app: "./app/client/app.js",
-      style: "./app/stylesheets/style.scss"
+      app: "./app/client/app.js"
     },
     output: {
         path: OUTPUT_DIRECTORY,
-        filename: `[name].js`,
+        filename: `bundle.js`,
         publicPath: PUBLIC_PATH,
     },
     module: {
       rules: [
         { test: /\.jsx?$/, exclude: /node_modules/, use: BABEL_PRESET },
-        { test: /\.jsx?$/, include: /node_modules\/quintype-toddy-libs/, use: BABEL_PRESET },
         { test: /\.(sass|scss)$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
         {
           test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
@@ -39,5 +37,9 @@ module.exports = {
         }
       ]
     },
-    plugins: [new ExtractTextPlugin({ filename: "[name].css", allChunks: true })]
+    plugins: [new ExtractTextPlugin({ filename: "style.css", allChunks: true })],
+    devServer: {
+      contentBase: '.',
+      watchContentBase: true
+    }
 };
