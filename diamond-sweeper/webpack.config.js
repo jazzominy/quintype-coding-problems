@@ -1,7 +1,3 @@
-const webpack = require("webpack");
-const process = require('process');
-const path = require('path');
-
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const PUBLIC_PATH='/assets/';
@@ -26,7 +22,7 @@ module.exports = {
     },
     module: {
       rules: [
-        { test: /\.jsx?$/, exclude: /node_modules/, use: BABEL_PRESET },
+        { test: /\.js?$/, exclude: /node_modules/, use: BABEL_PRESET },
         { test: /\.(sass|scss)$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader') },
         {
           test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/,
