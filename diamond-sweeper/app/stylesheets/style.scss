@@ -22,3 +22,27 @@ table.diamondsweeper-board {
     background-image: url(question.png);
   }
 }
+
+ul {
+  list-style: none;
+  padding: 0px;
+  max-width: 435px;
+
+  li {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+    border: 1px solid black;
+    margin-right: 2px;
+    margin-bottom: 2px;
+  }
+
+  .unknown {
+    background-image: url(question.png);
+  }
+
+  .diamond {
+    background-image: url(diamond.png);
+  }
+}
